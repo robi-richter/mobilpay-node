@@ -93,7 +93,7 @@ mobilPay.handleGatewayResponse({
   })
   .then(function(data) {
     // check the response and send back an acknowledge message
-    const response = new MerchantResponse({
+    var response = new mobilpay.MerchantResponse({
       message: data.response.crc
     });
 
