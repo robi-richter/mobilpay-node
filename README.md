@@ -11,6 +11,13 @@ So, feel free to contribute ;)
 var mobilpay = require('mobilpay-node');
 var constants = mobilpay.constants;
 ```
+
+Bare in mind that you need to extract the public key from the public certificate provided by Mobilpay
+
+```bash
+openssl x509 -pubkey -noout -in PUBLIC_CERTIFICATE_FILE.cer > PUBLIC_KEY.pem
+```
+
 Create Mobilpay instance
 ```javascript
 // create Mobilpay instance
