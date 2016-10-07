@@ -1,5 +1,8 @@
 # mobilpay-node
 
+[![dependencies Status](https://david-dm.org/robi-richter/mobilpay-node/status.svg)](https://david-dm.org/robi-richter/mobilpay-node)
+[![devDependencies Status](https://david-dm.org/robi-richter/mobilpay-node/dev-status.svg)](https://david-dm.org/robi-richter/mobilpay-node?type=dev)
+
 ## About
 this is a lightweight NodeJs library to integrate MobilPay payment gateway in your projects.
 Bare in mind that it's still **under development** and **does't support all the payment options**.
