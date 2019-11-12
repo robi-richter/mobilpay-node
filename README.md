@@ -24,13 +24,23 @@ openssl x509 -pubkey -noout -in PUBLIC_CERTIFICATE_FILE.cer > PUBLIC_KEY.pem
 Create Mobilpay instance
 ```javascript
 // create Mobilpay instance
+
 var MobilPay = new mobilpay.Mobilpay({
   signature: '',
   sandbox: true,
   publicKeyFile: '',
   privateKeyFile: '',
+  serviceType: 1, // default value 
 });
 ```
+
+serviceType can take one of the following values:
+- 1 (Standard payment)
+- 3 (Payment with prefilled card data)
+
+
+serviceType with value 2 is not yet implemented (Payment with CVV only)
+
 Create a new payment request
 ```javascript
 var paymentRequest = MobilPay.createRequest({
@@ -59,6 +69,12 @@ var paymentRequest = MobilPay.createRequest({
     test2: 'test param 2',
   }
 });
+```
+
+If the serviceType is 3, the paymentRequest from above should contain:
+```
+  tokenId: 'token id from mobilpay',
+  panMasked: 'pan masked from mobilpay'
 ```
 
 Prepare redirect data
