@@ -129,3 +129,33 @@ mobilPay.handleGatewayResponse({
     // handle error case
   });
 ```
+
+### Cancel a payment
+In order to cancel a payment, you need a sessionId. `MobilPay.getSessionId()` method will return a promise that is resolved with an object that contains property sessionId:
+
+```javascript
+MobilPay.getSessionId({
+  username: 'mobilpay.username',
+  password: 'mobilpay.password'
+  })
+  .then(response => {
+    console.log(response); // { sessionId: 'unique user session identifier'}
+    const { sessionId } = response;
+  })
+  .catch(err => {
+    // handle error case
+    console.log(err)
+  })
+```
+
+Once you get the sessionId, you can store it in a (global) variable, and use it for each credit invoice request as below: 
+
+```javascript
+MobilPay.creditInvoice({
+  sessionId: sessionId,
+  orderId: '', // payment request id you want to credit
+  amount: 10
+})
+  .then(response => console.log(response))
+  .catch(err => console.log(err))
+```
