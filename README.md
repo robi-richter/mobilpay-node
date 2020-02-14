@@ -129,3 +129,33 @@ mobilPay.handleGatewayResponse({
     // handle error case
   });
 ```
+
+### Retrieve session id
+In order to cancel a payment, you need a sessionId. `MobilPay.getSessionId()` method will return a promise that is resolved with an object that contains property sessionId:
+
+```javascript
+MobilPay.getSessionId({
+  username: 'mobilpay.username',
+  password: 'mobilpay.password'
+  })
+  .then(response => {
+    console.log(response); // { sessionId: 'unique user session identifier'}
+    const { sessionId } = response;
+  })
+  .catch(err => {
+    // handle error case
+    console.log(err)
+  })
+```
+
+### Cancel a payment
+
+```javascript
+MobilPay.creditInvoice({
+  sessionId: sessionId,
+  orderId: '', // payment request id you want to credit
+  amount: 10 // must be equal or less than the initial amount
+})
+  .then(response => console.log(response))
+  .catch(err => console.log(err))
+```
